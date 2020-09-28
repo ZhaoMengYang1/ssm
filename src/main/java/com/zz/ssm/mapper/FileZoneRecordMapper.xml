@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zz.ssm.mapper.FileZoneRecordMapper" >
+    <resultMap id="BaseResultMap" type="com.zz.ssm.entity.FileZoneRecord" >
+        <constructor >
+            <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="zone_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="zone_path" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="zone_md5" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="zone_record_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="zone_check_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="zone_total_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="zone_total_size" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="zone_start_size" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="zone_end_size" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="zone_total_md5" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="zone_now_index" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="zone_suffix" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="file_record_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List" >
+    id, zone_name, zone_path, zone_md5, zone_record_date, zone_check_date, zone_total_count,
+    zone_total_size, zone_start_size, zone_end_size, zone_total_md5, zone_now_index,
+    zone_suffix, file_record_id
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_file_zone_record
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_file_zone_record
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.zz.ssm.entity.FileZoneRecord" >
+    insert into sys_file_zone_record (id, zone_name, zone_path,
+      zone_md5, zone_record_date, zone_check_date,
+      zone_total_count, zone_total_size, zone_start_size,
+      zone_end_size, zone_total_md5, zone_now_index,
+      zone_suffix, file_record_id)
+    values (#{id,jdbcType=VARCHAR}, #{zoneName,jdbcType=VARCHAR}, #{zonePath,jdbcType=VARCHAR},
+      #{zoneMd5,jdbcType=VARCHAR}, #{zoneRecordDate,jdbcType=TIMESTAMP}, #{zoneCheckDate,jdbcType=TIMESTAMP},
+      #{zoneTotalCount,jdbcType=INTEGER}, #{zoneTotalSize,jdbcType=BIGINT}, #{zoneStartSize,jdbcType=BIGINT},
+      #{zoneEndSize,jdbcType=BIGINT}, #{zoneTotalMd5,jdbcType=VARCHAR}, #{zoneNowIndex,jdbcType=INTEGER},
+      #{zoneSuffix,jdbcType=VARCHAR}, #{fileRecordId,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.zz.ssm.entity.FileZoneRecord" >
+        insert into sys_file_zone_record
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="zoneName != null" >
+                zone_name,
+            </if>
+            <if test="zonePath != null" >
+                zone_path,
+            </if>
+            <if test="zoneMd5 != null" >
+                zone_md5,
+            </if>
+            <if test="zoneRecordDate != null" >
+                zone_record_date,
+            </if>
+            <if test="zoneCheckDate != null" >
+                zone_check_date,
+            </if>
+            <if test="zoneTotalCount != null" >
+                zone_total_count,
+            </if>
+            <if test="zoneTotalSize != null" >
+                zone_total_size,
+            </if>
+            <if test="zoneStartSize != null" >
+                zone_start_size,
+            </if>
+            <if test="zoneEndSize != null" >
+                zone_end_size,
+            </if>
+            <if test="zoneTotalMd5 != null" >
+                zone_total_md5,
+            </if>
+            <if test="zoneNowIndex != null" >
+                zone_now_index,
+            </if>
+            <if test="zoneSuffix != null" >
+                zone_suffix,
+            </if>
+            <if test="fileRecordId != null" >
+                file_record_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneName != null" >
+                #{zoneName,jdbcType=VARCHAR},
+            </if>
+            <if test="zonePath != null" >
+                #{zonePath,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneMd5 != null" >
+                #{zoneMd5,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneRecordDate != null" >
+                #{zoneRecordDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zoneCheckDate != null" >
+                #{zoneCheckDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zoneTotalCount != null" >
+                #{zoneTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="zoneTotalSize != null" >
+                #{zoneTotalSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneStartSize != null" >
+                #{zoneStartSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneEndSize != null" >
+                #{zoneEndSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneTotalMd5 != null" >
+                #{zoneTotalMd5,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneNowIndex != null" >
+                #{zoneNowIndex,jdbcType=INTEGER},
+            </if>
+            <if test="zoneSuffix != null" >
+                #{zoneSuffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fileRecordId != null" >
+                #{fileRecordId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zz.ssm.entity.FileZoneRecord" >
+        update sys_file_zone_record
+        <set >
+            <if test="zoneName != null" >
+                zone_name = #{zoneName,jdbcType=VARCHAR},
+            </if>
+            <if test="zonePath != null" >
+                zone_path = #{zonePath,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneMd5 != null" >
+                zone_md5 = #{zoneMd5,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneRecordDate != null" >
+                zone_record_date = #{zoneRecordDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zoneCheckDate != null" >
+                zone_check_date = #{zoneCheckDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="zoneTotalCount != null" >
+                zone_total_count = #{zoneTotalCount,jdbcType=INTEGER},
+            </if>
+            <if test="zoneTotalSize != null" >
+                zone_total_size = #{zoneTotalSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneStartSize != null" >
+                zone_start_size = #{zoneStartSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneEndSize != null" >
+                zone_end_size = #{zoneEndSize,jdbcType=BIGINT},
+            </if>
+            <if test="zoneTotalMd5 != null" >
+                zone_total_md5 = #{zoneTotalMd5,jdbcType=VARCHAR},
+            </if>
+            <if test="zoneNowIndex != null" >
+                zone_now_index = #{zoneNowIndex,jdbcType=INTEGER},
+            </if>
+            <if test="zoneSuffix != null" >
+                zone_suffix = #{zoneSuffix,jdbcType=VARCHAR},
+            </if>
+            <if test="fileRecordId != null" >
+                file_record_id = #{fileRecordId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zz.ssm.entity.FileZoneRecord" >
+    update sys_file_zone_record
+    set zone_name = #{zoneName,jdbcType=VARCHAR},
+      zone_path = #{zonePath,jdbcType=VARCHAR},
+      zone_md5 = #{zoneMd5,jdbcType=VARCHAR},
+      zone_record_date = #{zoneRecordDate,jdbcType=TIMESTAMP},
+      zone_check_date = #{zoneCheckDate,jdbcType=TIMESTAMP},
+      zone_total_count = #{zoneTotalCount,jdbcType=INTEGER},
+      zone_total_size = #{zoneTotalSize,jdbcType=BIGINT},
+      zone_start_size = #{zoneStartSize,jdbcType=BIGINT},
+      zone_end_size = #{zoneEndSize,jdbcType=BIGINT},
+      zone_total_md5 = #{zoneTotalMd5,jdbcType=VARCHAR},
+      zone_now_index = #{zoneNowIndex,jdbcType=INTEGER},
+      zone_suffix = #{zoneSuffix,jdbcType=VARCHAR},
+      file_record_id = #{fileRecordId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.zz.ssm.mapper.FileRecordMapper">
+<resultMap id="BaseResultMap" type="com.zz.ssm.entity.FileRecord">
+	<id column="id" property="id" />
+	<result column="org_name" property="orgName" />
+	<result column="server_local_name" property="serverLocalName" />
+	<result column="server_local_path" property="serverLocalPath" />
+	<result column="network_path" property="networkPath" />
+	<result column="upload_type" property="uploadType" />
+	<result column="md5_value" property="md5Value" />
+	<result column="file_size" property="fileSize" />
+	<result column="is_merge" property="isMerge" />
+	<result column="is_zone" property="isZone" />
+	<result column="zone_total" property="zoneTotal" />
+	<result column="zone_date" property="zoneDate" />
+	<result column="zone_merge_date" property="zoneMergeDate" />
+	<result column="file_type" property="fileType" />
+	<result column="upload_device" property="uploadDevice" />
+	<result column="upload_ip" property="uploadIp" />
+	<result column="upload_count" property="uploadCount" />
+	<result column="download_count" property="downloadCount" />
+	<result column="storage_date" property="storageDate" />
+	<result column="create_by" property="createBy" />
+	<result column="create_time" property="createTime" />
+	<result column="del_flag" property="delFlag" />
+
+</resultMap>
+    <!--id应该是接口中的方法，结果类型如没有配置别名则应该使用全名称 -->
+
+    <!-- 获得所有上传文件的记录 -->
+
+    <select id="getAllRecord" resultMap="BaseResultMap">
+	select * FROM sys_file_record
+    </select>
+    <!-- 根据id获得上传文件记录 -->
+
+    <select id="getRecordById" resultType="FileRecord">
+	select * from sys_file_record where id =#{id}
+    </select>
+    <!-- 添加记录 -->
+
+    <insert id="add">
+	insert into sys_file_record (id,org_name,server_local_name,server_local_path,network_path,upload_type,
+	md5_value,file_size,is_merge,is_zone,zone_total,zone_date,zone_merge_date,file_type,upload_device,
+	upload_ip,upload_count,download_count,storage_date,create_by,create_time,del_flag)
+	values(#{id},#{orgName},#{serverLocalName},#{serverLocalPath},#{networkPath},#{uploadType},
+	#{md5Value},#{fileSize},#{isZone},#{zoneTotal},#{zoneDate},#{zoneMergeDate},#{fileType},
+	#{uploadDevice},#{uploadIp},#{storageDate},#{downloadCount},#{uploadCount},#{isMerge},#{createBy},
+	#{createTime},#{delFlag})
+</insert>
+    <!-- 删除记录 -->
+
+    <delete id="delete">
+delete form sys_file_record where id= #{id}
+</delete>
+
+    <!-- 更新文件记录 -->
+
+    <!--<update id="update">-->
+<!--update sys_file_record set-->
+<!--where id= #{id}-->
+<!--</update>-->
+
+
+
+
+
+</mapper>
